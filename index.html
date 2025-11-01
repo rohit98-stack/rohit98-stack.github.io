@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Apurva! ❤️</title>
+    <!-- 1. Tailwind CSS for styling --><script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 2. Google Fonts for a romantic feel --><link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- 3. Custom styles --><style>
+        /* Use the 'Inter' font by default */
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            /* Enhanced: Subtle, slow-moving radial gradient background - NEW COLORS */
+            background: radial-gradient(circle at center, #f5f3ff 0%, #ede9fe 50%, #ddd6fe 100%); /* bg-violet-50 to violet-100 to violet-200 */
+            background-size: 200% 200%;
+            animation: backgroundPan 30s linear infinite alternate;
+        }
+
+        @keyframes backgroundPan {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+        
+        /* Use the romantic 'Dancing Script' for headings */
+        .font-script {
+            font-family: 'Dancing Script', cursive;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+        }
+
+        /* A subtle fade-in animation for elements */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        /* Stagger the fade-in for gallery items */
+        .gallery-item:nth-child(1) { animation-delay: 0.2s; }
+        .gallery-item:nth-child(2) { animation-delay: 0.4s; }
+        .gallery-item:nth-child(3) { animation-delay: 0.6s; }
+        .gallery-item:nth-child(4) { animation-delay: 0.8s; }
+        .gallery-item:nth-child(5) { animation-delay: 1.0s; }
+        .gallery-item:nth-child(6) { animation-delay: 1.2s; }
+
+        /* Heartbeat animation for the heart icon */
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+        .heartbeat {
+            animation: heartbeat 1.5s infinite ease-in-out;
+        }
+
+        /* ----- New Animation: Falling Hearts with Flutter ----- */
+        #hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            opacity: 0.7;
+            transform: rotate(-45deg);
+            animation: fall 10s linear infinite;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            /* NEW COLOR */
+            background-color: #7e22ce; /* purple-700 */
+            border-radius: 50%;
+            /* FIX: Use CSS variables, with fallbacks */
+            width: var(--heart-size, 20px);
+            height: var(--heart-size, 20px);
+        }
+
+        /* FIX: Split ::before and ::after to set top/left */
+        .heart::before {
+            top: var(--heart-top, -10px);
+            left: 0;
+        }
+
+        .heart::after {
+            top: 0;
+            left: var(--heart-left, 10px);
+        }
+
+        @keyframes fall {
+            0% { top: -10%; opacity: 0.7; transform: translateX(0) rotate(-45deg) scale(1); }
+            20% { transform: translateX(5px) rotate(-50deg) scale(0.95); opacity: 0.8;}
+            40% { transform: translateX(-5px) rotate(-40deg) scale(1.05); opacity: 0.7;}
+            60% { transform: translateX(5px) rotate(-50deg) scale(0.95); opacity: 0.8;}
+            80% { transform: translateX(-5px) rotate(-40deg) scale(1.05); opacity: 0.7;}
+            100% { top: 110%; opacity: 0.2; transform: translateX(0) rotate(-45deg) scale(1); }
+        }
+        /* ----- End of Falling Hearts ----- */
+
+        /* ----- New Animation: Title Entrance ----- */
+        @keyframes titleReveal {
+            from { opacity: 0; transform: translateY(-50px) scale(0.8); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .animate-title-reveal {
+            animation: titleReveal 1.5s ease-out forwards;
+            animation-delay: 0.5s; /* Delay for background to settle */
+            opacity: 0; /* Hide initially */
+        }
+
+        /* ----- REMOVED Confetti Burst CSS ----- */
+
+
+        /* ----- New Animation: Shimmer/Glow on Love Message ----- */
+        @keyframes shimmerGlow {
+            /* NEW COLORS */
+            0%, 100% { text-shadow: 0 0 5px rgba(196, 181, 253, 0.5); } /* violet-300 */
+            50% { text-shadow: 0 0 15px rgba(196, 181, 253, 0.8), 0 0 20px rgba(255, 255, 255, 0.6); }
+        }
+        .love-message-glow {
+            animation: shimmerGlow 2s infinite alternate ease-in-out;
+        }
+
+        /* Photo hover effects - NEW COLORS */
+        .photo-hover-glow:hover {
+            box-shadow: 0 0 20px rgba(167, 139, 250, 0.7); /* violet-400 */
+            border-color: #ddd6fe; /* violet-200 */
+        }
+
+        /* ----- NEW: Photo Entry Animation ----- */
+        @keyframes photoEntry {
+            from { opacity: 0; transform: scale(0.8) rotateZ(-3deg); }
+            to { opacity: 1; transform: scale(1) rotateZ(0deg); }
+        }
+        .animate-photo-entry {
+            animation: photoEntry 1s ease-out forwards;
+            opacity: 0; /* Hide initially */
+        }
+        /* Stagger for main photo and gallery items */
+        .main-photo-wrapper { animation-delay: 2.2s; }
+        .gallery-item {
+            animation: photoEntry 1s ease-out forwards;
+            opacity: 0; /* Hide initially */
+        }
+        /* Gallery item delays are handled by :nth-child in general .animate-fade-in rules, 
+           but we need to override the transform for this specific animation. */
+        .gallery-item:nth-child(1) { animation-delay: 2.8s; }
+        .gallery-item:nth-child(2) { animation-delay: 3.0s; }
+        .gallery-item:nth-child(3) { animation-delay: 3.2s; }
+        .gallery-item:nth-child(4) { animation-delay: 3.4s; }
+        .gallery-item:nth-child(5) { animation-delay: 3.6s; }
+        .gallery-item:nth-child(6) { animation-delay: 3.8s; }
+
+        /* ----- NEW: Sparkling Text Effect ----- */
+        .sparkle-text {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+            background: linear-gradient(90deg, #c084fc, #fcd34d, #c084fc); /* purple, gold, purple */
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: sparkleGradient 3s linear infinite;
+        }
+
+        @keyframes sparkleGradient {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* ----- NEW: Floating Particles ----- */
+        #particle-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1; /* Below other content */
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.6); /* Soft white */
+            border-radius: 50%;
+            opacity: 0;
+            animation: floatUp 15s linear infinite;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.4); /* Subtle glow */
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            20% { opacity: 0.8; }
+            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+        }
+
+        /* ----- NEW: Pause animations on scroll ----- */
+        body.scrolling .heart,
+        body.scrolling .particle {
+            animation-play-state: paused;
+        }
+
+        /* ----- NEW: CSS Birthday Cake (for Preloader) ----- */
+        .cake-wrapper {
+            width: 200px;
+            height: 220px;
+            position: relative;
+        }
+        .plate {
+            width: 220px;
+            height: 15px;
+            background-color: #e0e7ff; /* indigo-100 */
+            border-radius: 50%;
+            position: absolute;
+            bottom: 0;
+            left: -10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .cake-tier-1 {
+            width: 200px;
+            height: 100px;
+            background-color: #fff;
+            border: 4px solid #c4b5fd; /* violet-300 */
+            border-radius: 10px 10px 0 0;
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+        }
+        .cake-tier-2 {
+            width: 140px;
+            height: 80px;
+            background-color: #fff;
+            border: 4px solid #c4b5fd; /* violet-300 */
+            border-radius: 10px 10px 0 0;
+            position: absolute;
+            bottom: 110px; /* On top of tier 1 */
+            left: 30px; /* Centered */
+        }
+        /* Icing Drips (simple) */
+        .cake-tier-1::before, .cake-tier-2::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -4px;
+            right: -4px;
+            height: 20px;
+            background-color: #a78bfa; /* violet-400 */
+            border-radius: 50% 50% 50% 50% / 0% 0% 100% 100%;
+        }
+        .cake-tier-2::before {
+             background-color: #c084fc; /* purple-400 */
+        }
+
+        .candle {
+            width: 10px;
+            height: 40px;
+            background-color: #fcd34d; /* amber-300 (gold) */
+            position: absolute;
+            bottom: 190px; /* On top of tier 2 */
+            transform: translateX(-50%);
+        }
+        .flame {
+            width: 10px;
+            height: 15px;
+            background-color: #fbbf24; /* amber-400 */
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            position: absolute;
+            top: -15px;
+            left: 0;
+            animation: flicker 1.5s infinite alternate;
+        }
+        @keyframes flicker {
+            0%, 100% { transform: scaleY(1) scaleX(1); opacity: 1; }
+            50% { transform: scaleY(0.9) scaleX(1.1); opacity: 0.8; }
+        }
+
+    </style>
+</head>
+<body class="text-gray-800 min-h-screen">
+
+    <!-- NEW: Preloader Screen -->
+    <div id="preloader" class="fixed inset-0 bg-violet-50 z-[10000] flex flex-col items-center justify-center text-center p-4 transition-opacity duration-1000 ease-in-out">
+        <h2 class="font-script text-5xl text-purple-700 mb-8 animate-pulse">
+            Happy Birthday, Nupiee... Make a wish! 🎂
+        </h2>
+        <!-- CSS Cake Structure -->
+        <div class="cake-wrapper">
+            <div class="cake-tier-1"></div>
+            <div class="cake-tier-2"></div>
+            <div class="plate"></div>
+            <!-- Candles -->
+            <div class="candle" style="left: 40%;">
+                <div class="flame"></div>
+            </div>
+            <div class="candle" style="left: 50%;">
+                <div class="flame"></div>
+            </div>
+            <div class="candle" style="left: 60%;">
+                <div class="flame"></div>
+            </div>
+        </div>
+        <p class="text-lg text-gray-700 mt-8">Loading your surprise...</p>
+    </div>
+
+    <!-- NEW: Main Content Wrapper (hidden initially) -->
+    <div id="main-content" class="opacity-0 transition-opacity duration-1000 ease-in-out">
+
+        <!-- New: Falling Hearts Container --><div id="hearts-container"></div>
+        <!-- NEW: Particle Container --><div id="particle-container"></div>
+
+        <!-- Container for all content --><div class="container mx-auto p-4 md:p-8 max-w-4xl relative z-10">
+
+            <!-- Header Section --><header class="text-center my-12">
+                <!-- NEW: Sparkling Text --><h1 class="font-script text-6xl md:text-8xl text-purple-700 animate-title-reveal sparkle-text">
+                    Happy Birthday, My Nupiee!
+                </h1>
+                <p class="font-script text-3xl md:text-4xl text-purple-500 mt-4 animate-fade-in" style="animation-delay: 1.8s; text-shadow: 1px 1px 4px rgba(0,0,0,0.1);">November 2nd - A day as special as you.</p>
+                <!-- NEW COLOR --><div class="text-5xl text-purple-600 mt-6 heartbeat inline-block animate-fade-in" style="animation-delay: 2s;">
+                    ❤️
+                </div>
+            </header>
+
+            <!-- Main Photo Section --><section class="my-16 main-photo-wrapper animate-photo-entry">
+                <div class="bg-white rounded-lg shadow-xl overflow-hidden border-4 border-white transition-all duration-300 ease-in-out photo-hover-glow">
+                    <!-- 
+                      PHOTO PLACEHOLDER 1: 
+                      Replace the 'src' attribute below with the URL of your main photo.
+                      Example: src="./my-favorite-photo.jpg"
+                    --><!-- NEW PLACEHOLDER COLORS --><img 
+                        src="https://lh3.googleusercontent.com/d/1Phc-FgGzCdlDkxs4ZN2T_2k380vSuckP" 
+                        alt="Apurva and Me" 
+                        class="w-full h-auto object-cover transition-transform duration-500 ease-in-out hover:scale-105"
+                        onerror="this.src='https://placehold.co/1000x700/ede9fe/7e22ce?text=Photo+Here'"
+                    >
+                </div>
+                <p class="text-center text-lg text-gray-600 italic mt-4 animate-fade-in" style="animation-delay: 2.4s;">
+                    My favorite person in the whole world.
+                </p>
+            </section>
+
+            <!-- "Our Memories" Gallery Section --><section class="my-16">
+                <!-- NEW: Button-like feel for heading --><h2 class="font-script text-5xl text-purple-700 text-center mb-10 animate-fade-in 
+                    bg-gradient-to-r from-purple-200 to-violet-200 py-4 px-6 rounded-full inline-block cursor-pointer 
+                    transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl hover:from-purple-300 hover:to-violet-300" 
+                    style="animation-delay: 2.6s;">
+                    Our Beautiful Moments
+                </h2>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    
+                    <!-- Gallery Item 1 --><div class="bg-white rounded-lg shadow-lg overflow-hidden gallery-item transition-all duration-300 ease-in-out photo-hover-glow">
+                        <!-- 
+                          PHOTO PLACEHOLDER 2: 
+                          Replace the 'src' below with your photo URL.
+                        --><!-- NEW PLACEHOLDER COLORS --><img src="https://lh3.googleusercontent.com/d/1ay19w9tF3yBlTD-_xv8hbz4kK1PwF-5X" alt="Memory 1" class="w-full h-64 object-cover transition-transform duration-300 ease-in-out hover:scale-105" onerror="this.src='https://placehold.co/600x600/ede9fe/7e22ce?text=Photo+2'">
+                        <p class="p-4 text-gray-700 text-center">That unforgettable first date!</p>
+                    </div>
+
+                    <!-- Gallery Item 2 --><div class="bg-white rounded-lg shadow-lg overflow-hidden gallery-item transition-all duration-300 ease-in-out photo-hover-glow">
+                        <!-- 
+                          PHOTO PLACEHOLDER 3: 
+                          Replace the 'src' below with your photo URL.
+                        --><!-- NEW PLACEHOLDER COLORS --><img src="https://lh3.googleusercontent.com/d/1oOS085fvOUX2D9ECjBTlLc7-EqzvKvM_" alt="Memory 2" class="w-full h-64 object-cover transition-transform duration-300 ease-in-out hover:scale-105" onerror="this.src='https://placehold.co/600x600/f5f3ff/7e22ce?text=Photo+3'">
+                        <p class="p-4 text-gray-700 text-center">Remember that amazing trip?</p>
+                    </div>
+
+                    <!-- Gallery Item 3 --><div class="bg-white rounded-lg shadow-lg overflow-hidden gallery-item transition-all duration-300 ease-in-out photo-hover-glow">
+                        <!-- 
+                          PHOTO PLACEHOLDER 4: 
+                          Replace the 'src' below with your photo URL.
+                        --><!-- NEW PLACEHOLDER COLORS --><img src="https://lh3.googleusercontent.com/d/1uYA_fKAb4j2SzNhaBrdtQnBTvNhQVuZ5" alt="Memory 3" class="w-full h-64 object-cover transition-transform duration-300 ease-in-out hover:scale-105" onerror="this.src='https://placehold.co/600x600/ede9fe/7e22ce?text=Photo+4'">
+                        <p class="p-4 text-gray-700 text-center">All the times we laughed so hard.</p>
+                    </div>
+
+                    <!-- Gallery Item 4 --><div class="bg-white rounded-lg shadow-lg overflow-hidden gallery-item transition-all duration-300 ease-in-out photo-hover-glow">
+                        <!-- 
+                          PHOTO PLACEHOLDER 5: 
+                          Replace the 'src' below with your photo URL.
+                        --><!-- NEW PLACEHOLDER COLORS --><img src="https://lh3.googleusercontent.com/d/1EpwCbBurDmHxA0WxeYsjwFwXCg9b9knN" alt="Memory 4" class="w-full h-64 object-cover transition-transform duration-300 ease-in-out hover:scale-105" onerror="this.src='httpsG://placehold.co/600x600/f5f3ff/7e22ce?text=Photo+5'">
+                        <p class="p-4 text-gray-700 text-center">So excited for our future together!</p>
+                    </div>
+
+                    <!-- Gallery Item 5 --><div class="bg-white rounded-lg shadow-lg overflow-hidden gallery-item transition-all duration-300 ease-in-out photo-hover-glow">
+                        <!-- 
+                          PHOTO PLACEHOLDER 6: 
+                          Replace the 'src' below with your photo URL.
+                        --><!-- NEW PLACEHOLDER COLORS --><img src="https://lh3.googleusercontent.com/d/1o9URbaamWT7mR78CgVXazx-IDMuI2aLu" alt="Memory 5" class="w-full h-64 object-cover transition-transform duration-300 ease-in-out hover:scale-105" onerror="this.src='https://placehold.co/600x600/ede9fe/7e22ce?text=Photo+6'">
+                        <p class="p-4 text-gray-700 text-center">Just enjoying a quiet moment.</p>
+                    </div>
+
+                    <!-- Gallery Item 6 --><div class="bg-white rounded-lg shadow-lg overflow-hidden gallery-item transition-all duration-300 ease-in-out photo-hover-glow">
+                        <!-- 
+                          PHOTO PLACEHOLDER 7: 
+                          Replace the 'src' below with your photo URL.
+                        --><!-- NEW PLACEHOLDER COLORS --><img src="https://lh3.googleusercontent.com/d/1Cdxtm1NjAA225CfkxgjO9dA6ESmPp97l" alt="Memory 6" class="w-full h-64 object-cover transition-transform duration-300 ease-in-out hover:scale-105" onerror="this.src='https...://placehold.co/600x600/f5f3ff/7e22ce?text=Photo+7'">
+                        <p class="p-4 text-gray-700 text-center">I'll never get tired of this smile.</p>
+                    </div>
+                    
+                </div>
+            </section>
+
+            <!-- A Letter Section --><section class="my-20 bg-white rounded-lg shadow-xl p-8 md:p-12 animate-fade-in" style="animation-delay: 4s;">
+                <!-- NEW COLOR --><h2 class="font-script text-5xl text-purple-700 text-center mb-8">
+                    To My Fiancée...
+                </h2>
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                    My dearest Apurva,
+                </p>
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                    Happy Birthday to the love of my life! Every day with you is a gift, but today is all about celebrating you. Watching you smile brightens my entire world, and I feel like the luckiest person alive to be able to call you my partner and my future.
+                </p>
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                    I am so excited for our engagement this month and to spend all of our birthdays together.
+                </p>
+                <p class="text-lg text-gray-700 leading-relaxed font-bold love-message-glow">
+                    I love you more than words can say.
+                </p>
+
+                <p class="text-2xl text-right text-gray-800 mt-10 font-script">
+                    With all my love, <br>
+                    Rohit
+                </p>
+            </section>
+     
+        </div> <!-- End of .container -->
+
+    </div> <!-- End of #main-content -->
+
+    <!-- New: JavaScript for Falling Hearts --><script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- NEW: Preloader Logic ---
+            const preloader = document.getElementById('preloader');
+            const mainContent = document.getElementById('main-content');
+
+            // Set a timer to hide the preloader
+            setTimeout(() => {
+                if (preloader) {
+                    // Start fading out the preloader
+                    preloader.style.opacity = '0';
+                    
+                    // After the fade-out, hide it completely and fade in content
+                    setTimeout(() => {
+                        preloader.style.display = 'none';
+                        if (mainContent) {
+                            mainContent.style.opacity = '1';
+                        }
+                    }, 1000); // This matches the transition-duration
+                }
+            }, 4000); // Show preloader for 4 seconds (4000ms)
+
+
+            // --- NEW: Scroll-based Animation Pausing ---
+            let scrollTimeout;
+            const body = document.body;
+
+            window.addEventListener('scroll', () => {
+                body.classList.add('scrolling');
+                
+                clearTimeout(scrollTimeout);
+                
+                scrollTimeout = setTimeout(() => {
+                    body.classList.remove('scrolling');
+                }, 150); // Stop after 150ms of no scrolling
+            });
+
+
+            // --- Existing Animation Logic ---
+            const heartsContainer = document.getElementById('hearts-container');
+            const particleContainer = document.getElementById('particle-container');
+
+            // --- Falling Hearts ---
+            function createHeart() {
+                if (!heartsContainer) return; // Add check for container
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                
+                const size = Math.random() * 25 + 15; // Hearts between 15px and 40px
+                heart.style.width = `${size}px`;
+                heart.style.height = `${size}px`;
+                heart.style.left = `${Math.random() * 100}vw`;
+                heart.style.animationDuration = `${Math.random() * 5 + 8}s`; // 8 to 13 seconds
+                heart.style.opacity = Math.random() * 0.5 + 0.3; 
+
+                /* FIX: Set CSS Custom Properties for pseudo-elements 
+                  instead of trying to select them with querySelector.
+                */
+                heart.style.setProperty('--heart-size', `${size}px`);
+                heart.style.setProperty('--heart-top', `-${size / 2}px`);
+                heart.style.setProperty('--heart-left', `${size / 2}px`);
+                
+                // NEW: Randomize heart color
+                const heartColors = ['#7e22ce', '#a855f7', '#d946ef']; // purple-700, purple-500, fuchsia-500
+                const randomColor = heartColors[Math.floor(Math.random() * heartColors.length)];
+                heart.style.setProperty('--heart-color', randomColor); // Will be used by ::before/::after
+
+                heartsContainer.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, parseFloat(heart.style.animationDuration) * 1000);
+            }
+            setInterval(createHeart, 300); // More frequent hearts
+
+            // --- NEW: Floating Particles ---
+            function createParticle() {
+                if (!particleContainer) return;
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                const size = Math.random() * 5 + 3; // Particles between 3px and 8px
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.animationDuration = `${Math.random() * 10 + 10}s`; // 10 to 20 seconds
+                particle.style.animationDelay = `${Math.random() * 5}s`; // Stagger initial animation
+
+                particleContainer.appendChild(particle);
+
+                setTimeout(() => {
+                    particle.remove();
+                }, parseFloat(particle.style.animationDuration) * 1000 + parseFloat(particle.style.animationDelay) * 1000);
+            }
+            // Create a steady stream of particles, but not too many to overwhelm
+            setInterval(createParticle, 500); 
+
+
+            // --- FIX for Heart Colors ---
+            // We need to tell the ::before and ::after to use the --heart-color variable
+            // Since we can't do that from JS, let's inject a small style rule
+            const heartStyleRule = `.heart::before, .heart::after { background-color: var(--heart-color, #7e22ce); }`;
+            const styleSheet = document.createElement("style");
+            styleSheet.innerText = heartStyleRule;
+            document.head.appendChild(styleSheet);
+        });
+    </script>
+
+</body>
+</html>
+
+
+
